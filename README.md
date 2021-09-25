@@ -1,1 +1,1 @@
-# create-cloudgate-app
+cloudgate-app
