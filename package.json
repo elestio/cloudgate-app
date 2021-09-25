@@ -1,0 +1,16 @@
+{
+  "name": "cloudgate-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "elestio",
+  "dependencies": {
+    "@elestio/cloudgate": "^1.0.107",
+    "dotenv": "^10.0.0",
+    "mysql2": "^2.3.0",
+    "pg": "^8.7.1"
+  }
+}
