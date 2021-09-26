@@ -290,7 +290,6 @@ if (isMainThread) {
             });
 
             //WS
-            /*
             if (apiconfig && Object.keys(apiconfig.WEBSOCKET).length) {
                 for (let [key, config] of Object.entries(apiconfig.WEBSOCKET)) {
 
@@ -322,7 +321,7 @@ if (isMainThread) {
                     });
                 }
             }
-            */
+            
             
             //cors (METHOD OPTION)
             app.options(key, async (res, req) => {
