@@ -1,17 +1,24 @@
 # cloudgate-app
 Starter template app for cloudgate
+&nbsp;
 
 ## Install Node.js 16 + GIT
     sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
     curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
     sudo apt -y install nodejs git
-&nbsp;
+
 
 ## Clone this repo & install dependencies
 
     git clone https://github.com/elestio/cloudgate-app.git
     cd cloudgate-app;
     npm install;
+
+## Customize static files, REST & Websockets endpoints
+
+- Add your static files in `/public/` folder
+- Add or duplicate an api function in `/api/` folder or subfolders
+- Reference your new functions in `/apiconfig.json`
 
 
 # Run
