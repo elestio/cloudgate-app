@@ -18,6 +18,13 @@ This is useful if you need a Node.js Application server able to:
     curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
     sudo apt -y install nodejs git
 
+# #Create a cloudgate app with a simple command:
+
+    npx create-cloudgate-app my-app-1
+
+This will create a full stack Node.js application supporting static files, REST API & Websockets endpoints.
+
+OR
 
 ## Clone this repo & install dependencies
 
