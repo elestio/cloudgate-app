@@ -61,7 +61,7 @@ Or download a prebuilt version:
 
 My test configuration for the 3 tests results below: Ryzen 5 3600, 6 cores
 
-## Static files
+## Serving Static files
 
         > wrk -t6 -c256 http://vms2.terasp.net:9000/
         --------------------------------------------
