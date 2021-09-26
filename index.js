@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require("path");
 const coregate = require('@elestio/cloudgate/coregate.js');
 const staticFiles = require('@elestio/cloudgate/modules/static-files.js');
 const { getIP } = require('@elestio/cloudgate/modules/tools.js');
@@ -8,7 +9,7 @@ const sharedMemory = require('@elestio/cloudgate/modules/shared-memory');
 const api = require('./api.js');
 const apiconfig = require('./apiconfig.json')
 
-const port = process.env.OPENVM_PORT || 9000;
+const port = process.env.PORT || 9000;
 const sslActivated = process.env.SSL || "0";
 const SSL_PORT = process.env.SSL_PORT || 443;
 const SSL_CERT = process.env.SSL_CERT;
@@ -217,7 +218,8 @@ if (isMainThread) {
 
             let controller = null;
             try{
-                controller = require(`.${config.path}`);
+                var functionPath = safeJoinPath(__dirname, config.path);
+                controller = require(functionPath);
                 if (threadId == 1) {
                     //console.log("load route from apiconfig.json: " + key);
                 }
@@ -288,10 +290,13 @@ if (isMainThread) {
             });
 
             //WS
+            /*
             if (apiconfig && Object.keys(apiconfig.WEBSOCKET).length) {
                 for (let [key, config] of Object.entries(apiconfig.WEBSOCKET)) {
 
-                    var wsController = require("." + config.path);
+                    var functionPath = safeJoinPath(__dirname, config.path);
+                    var wsController = require(functionPath);
+                    //var wsController = require("." + config.path);
                     app.ws(key, {
                         open: (ws) => {
                             //console.log('A WebSocket connected!');
@@ -317,6 +322,7 @@ if (isMainThread) {
                     });
                 }
             }
+            */
             
             //cors (METHOD OPTION)
             app.options(key, async (res, req) => {
@@ -327,6 +333,7 @@ if (isMainThread) {
             });
         }
     }
+
 
     //allow cors for special paths
     //handleCorsFor(app, "/json/templates.json");
@@ -421,3 +428,9 @@ function WSThreadSafeUtility(app) {
         }
     };
 };
+
+
+
+function safeJoinPath(...paths) {
+   return path.join(...paths).replace(/\\/g, "/");
+}

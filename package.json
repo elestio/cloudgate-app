@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "SSL=0 PORT=80 node index.js"
   },
   "author": "elestio",
   "dependencies": {
     "@elestio/cloudgate": "^1.0.107",
-    "dotenv": "^10.0.0",
-    "mysql2": "^2.3.0",
-    "pg": "^8.7.1"
+    "dotenv": "^10.0.0"
   }
 }
