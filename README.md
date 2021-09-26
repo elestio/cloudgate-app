@@ -68,10 +68,9 @@ You can run the whole benchmark suit on your computer like this:
 
         ./benchmarks.sh
 
-&nbsp;
 
 # Results
-My test configuration for the 4 tests results below: AMD Ryzen 5 3600, 6 cores
+My test configuration for the tests results below: AMD Ryzen 5 3600, 6 cores
 
 ## Serving Static HTML file
 
