@@ -343,8 +343,7 @@ if (isMainThread) {
     }
 
     //start listening
-    var hostname = "*"; //localhost, :::, *
-    app.listen(hostname, parseInt(finalPort), (token) => {
+    app.listen(parseInt(finalPort), (token) => {
         if (token) {
             console.log('Listening to port ' + finalPort + ' from thread ' + threadId);
         } else {
