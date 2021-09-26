@@ -1,6 +1,17 @@
 # cloudgate-app
-Starter template app for cloudgate
+Starter template app for cloudgate.
+
+![Cloudgate logo](public/cloudgate128.png)
+
+This is useful if you need a Node.js Application server able to:
+- Serving static files, REST APIs, Websockets ... all in one
+- Full control over the whole pipeline with no middle man
+- Multi-threaded with inter-thread communication & shared memory
+- Crazy fast (check benchmarks below)
+
 &nbsp;
+
+# Quickstart
 
 ## Install Node.js 16 + GIT
     sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
@@ -20,6 +31,7 @@ Starter template app for cloudgate
 - Add or duplicate an api function in `/api/` folder or subfolders
 - Reference your new functions in `/apiconfig.json`
 
+&nbsp;
 
 # Run
 
@@ -32,6 +44,7 @@ or run as a service with pm2
     npm install -g pm2
     pm2 start run.sh --name cloudgate-app
     pm2 save
+&nbsp;
 
 ## Run with docker
 Run just once
@@ -49,91 +62,109 @@ Run as a docker service
 # Benchmarks
 
 I used WRK for benchmarks, anything else will be too slow and will hit the limits of the benchmarking tool rather than cloudgate limits.
-You can download and build it from here: https://github.com/wg/wrk
+More details about the great WRK: https://github.com/wg/wrk
 
-Or download a prebuilt version:
+You can run the whole benchmark suit on your computer like this:
 
-        wget https://cdn.terasp.net/CDN/wrk;
-        chmod +x wrk;
-        mv wrk /bin/wrk;
+        ./benchmarks.sh
 
 &nbsp;
 
-My test configuration for the 3 tests results below: Ryzen 5 3600, 6 cores
+# Results
+My test configuration for the 4 tests results below: AMD Ryzen 5 3600, 6 cores
 
-## Serving Static files
+## Serving Static HTML file
 
-        > wrk -t6 -c256 http://vms2.terasp.net:9000/
+        > wrk -t6 -c256 http://127.0.0.1:9000/ --latency
         --------------------------------------------
-        Running 10s test @ http://vms2.terasp.net:9000/
+        Running 10s test @ http://127.0.0.1:9000/
         6 threads and 256 connections
         Thread Stats   Avg      Stdev     Max   +/- Stdev
-            Latency     1.08ms    2.02ms  32.30ms   89.15%
-            Req/Sec    99.83k    20.95k  139.79k    58.00%
+            Latency     1.06ms    1.89ms  27.98ms   89.41%
+            Req/Sec    88.16k    19.46k  126.65k    55.00%
         Latency Distribution
-            50%  229.00us
-            75%    0.90ms
-            90%    2.90ms
-            99%    8.91ms
-        5968593 requests in 10.06s, 3.60GB read
-        Requests/sec: 593568.02
-        Transfer/sec:    366.81MB
+            50%  255.00us
+            75%    1.02ms
+            90%    3.09ms
+            99%    9.23ms
+        5273106 requests in 10.05s, 3.18GB read
+        Requests/sec: 524742.35
+        Transfer/sec:    324.28MB
+
+
+## Serving Static PNG file
+
+        > wrk -t6 -c256 http://127.0.0.1:9000/cloudgate128.png --latency
+        --------------------------------------------
+        Running 10s test @ http://127.0.0.1:9000/cloudgate128.png
+        6 threads and 256 connections
+        Thread Stats   Avg      Stdev     Max   +/- Stdev
+            Latency     1.49ms    2.58ms  32.23ms   87.76%
+            Req/Sec    65.91k    15.63k   95.35k    62.10%
+        Latency Distribution
+            50%  341.00us
+            75%    1.37ms
+            90%    4.83ms
+            99%   11.95ms
+        3939181 requests in 10.08s, 56.74GB read
+        Requests/sec: 390743.74
+        Transfer/sec:      5.63GB
 
 
 &nbsp;
 ## REST API: Hello World
 
-        > wrk -t6 -c256 http://vms2.terasp.net:9000/api/tests/simple
+        > wrk -t6 -c256 http://127.0.0.1:9000/api/tests/simple --latency
         --------------------------------------------
-        Running 10s test @ http://vms2.terasp.net:9000/api/tests/simple
+        Running 10s test @ http://127.0.0.1:9000/api/tests/simple
         6 threads and 256 connections
         Thread Stats   Avg      Stdev     Max   +/- Stdev
-            Latency     1.58ms    2.88ms  42.21ms   87.81%
-            Req/Sec    84.87k    23.86k  135.73k    67.00%
+            Latency     1.45ms    2.57ms  44.15ms   88.06%
+            Req/Sec    74.82k    19.55k  120.61k    65.17%
         Latency Distribution
-            50%  246.00us
-            75%    1.56ms
-            90%    5.26ms
-            99%   13.22ms
-        5092672 requests in 10.09s, 3.58GB read
-        Requests/sec: 504969.31
-        Transfer/sec:    363.59MB
+            50%  292.00us
+            75%    1.43ms
+            90%    4.63ms
+            99%   11.90ms
+        4489094 requests in 10.09s, 3.16GB read
+        Requests/sec: 444811.04
+        Transfer/sec:    320.27MB
 
 
 &nbsp;
 ## REST API: read headers, method, querystring, posted data, source ip, increment shared memory, ...
 
-        > wrk -t6 -c256 http://vms2.terasp.net:9000/api/tests/full
+        > wrk -t6 -c256 http://127.0.0.1:9000/api/tests/full --latency
         --------------------------------------------
-        Running 10s test @ http://vms2.terasp.net:9000/api/tests/full
+        Running 10s test @ http://127.0.0.1:9000/api/tests/full
         6 threads and 256 connections
         Thread Stats   Avg      Stdev     Max   +/- Stdev
-            Latency     0.96ms  460.47us  15.41ms   80.16%
-            Req/Sec    44.08k     3.80k   97.23k    92.19%
+            Latency     1.02ms  571.05us  19.19ms   82.27%
+            Req/Sec    41.70k     2.75k   68.99k    76.17%
         Latency Distribution
-            50%    0.88ms
-            75%    1.15ms
-            90%    1.48ms
-            99%    2.41ms
-        2639770 requests in 10.10s, 2.62GB read
-        Requests/sec: 261374.88
-        Transfer/sec:    265.41MB
+            50%    0.92ms
+            75%    1.24ms
+            90%    1.63ms
+            99%    2.69ms
+        2489466 requests in 10.04s, 2.45GB read
+        Requests/sec: 248071.03
+        Transfer/sec:    249.54MB
 
 &nbsp;
 ## REST API: read file on disk, replace variables, return generated page
 
-        > wrk -t6 -c256 http://vms2.terasp.net:9000/api/tests/template
+        > wrk -t6 -c256 http://127.0.0.1:9000/api/tests/template --latency
         --------------------------------------------
-        Running 10s test @ http://vms2.terasp.net:9000/api/tests/template
+        Running 10s test @ http://127.0.0.1:9000/api/tests/template
         6 threads and 256 connections
         Thread Stats   Avg      Stdev     Max   +/- Stdev
-            Latency     1.39ms    1.78ms  29.14ms   88.98%
-            Req/Sec    42.18k     5.14k   76.54k    74.00%
+            Latency     1.52ms    2.00ms  28.25ms   89.05%
+            Req/Sec    38.81k     5.42k   63.84k    73.12%
         Latency Distribution
-            50%  725.00us
-            75%    1.53ms
-            90%    3.39ms
-            99%    8.88ms
-        2527511 requests in 10.09s, 3.46GB read
-        Requests/sec: 250377.72
-        Transfer/sec:    350.74MB    
+            50%  778.00us
+            75%    1.70ms
+            90%    3.73ms
+            99%   10.01ms
+        2326046 requests in 10.09s, 3.18GB read
+        Requests/sec: 230525.88
+        Transfer/sec:    322.94MB    
