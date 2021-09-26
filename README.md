@@ -91,6 +91,21 @@ My test configuration for the tests results below: AMD Ryzen 5 3600, 6 cores
         Transfer/sec:    324.28MB
 
 
+I runned the exact same test (same static html file) on nginx to get a point of comparison
+nginx is running on port 8080 on my server
+
+        > wrk -t6 -c256 http://127.0.0.1:8080/icg.html
+        --------------------------------------------        
+        Running 10s test @ http://127.0.0.1:8080/icg.html
+        6 threads and 256 connections
+        Thread Stats   Avg      Stdev     Max   +/- Stdev
+            Latency     1.74ms    3.07ms 208.07ms   89.85%
+            Req/Sec    47.97k     9.38k   91.66k    69.83%
+        2867104 requests in 10.07s, 2.67GB read
+        Requests/sec: 284788.93
+        Transfer/sec:    271.31MB
+
+
 ## Serving Static PNG file
 
         > wrk -t6 -c256 http://127.0.0.1:9000/cloudgate128.png --latency
@@ -109,6 +124,19 @@ My test configuration for the tests results below: AMD Ryzen 5 3600, 6 cores
         Requests/sec: 390743.74
         Transfer/sec:      5.63GB
 
+I runned the exact same test (same static png file) on nginx to get a point of comparison
+nginx is running on port 8080 on my server
+
+        > wrk -t6 -c256 http://127.0.0.1:8080/cloudgate128.png
+        --------------------------------------------
+        Running 10s test @ http://127.0.0.1:8080/cloudgate128.png
+        6 threads and 256 connections
+        Thread Stats   Avg      Stdev     Max   +/- Stdev
+            Latency     1.80ms    3.11ms 207.78ms   89.77%
+            Req/Sec    44.71k     9.14k   73.43k    69.00%
+        2675720 requests in 10.05s, 38.65GB read
+        Requests/sec: 266202.28
+        Transfer/sec:      3.85GB
 
 &nbsp;
 ## REST API: Hello World
@@ -127,7 +155,7 @@ My test configuration for the tests results below: AMD Ryzen 5 3600, 6 cores
             99%   11.90ms
         4489094 requests in 10.09s, 3.16GB read
         Requests/sec: 444811.04
-        Transfer/sec:    320.27MB
+        Transfer/sec:    320.27MB      
 
 
 &nbsp;
