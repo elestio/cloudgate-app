@@ -1,3 +1,9 @@
 module.exports = async (event) => {
-    return {  httpStatus: "200",  content: "Hello World"  };
+    //var myContent = "Hello World! " + (new Date().getTime())
+    var myContent = JSON.stringify(event)
+    return {  
+        httpStatus: "200", 
+        headers: {'content-type': 'text/html'}, 
+        content: myContent 
+    };
 };
