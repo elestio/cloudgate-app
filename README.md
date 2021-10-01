@@ -34,13 +34,13 @@ OR
     npm install;
 
 &nbsp;
-# Customize 
+# Getting started 
 
 - Add your static files in `/public/` folder
 - Add or duplicate an api function in `/api/` folder or subfolders
 - Reference your new functions in `/apiconfig.json`
 
-Sample basic API function:
+Sample basic API function (can be found in `/api/tests/simple.js`):
 
     module.exports = async (event) => {
         var myContent = "Hello World! " + (new Date().getTime())
