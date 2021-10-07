@@ -159,11 +159,11 @@ exports.requestParser = async (res, req, apiEndpoint) => {
 
 
     if (apiEndpoint.isPrivate) {
-        if (!finalQueryObj.apiKey || finalQueryObj.apiKey !== APIKEY) {
+        if ((!finalQueryObj.apiKey || finalQueryObj.apiKey !== APIKEY) && (reqInfos.headers['x-api-key'] != APIKEY )) {
             isValidReq = false;
             this.sendResponse(res, {
                 httpStatus: "403",
-                content: 'Wrong apiKey received. Forbidden'
+                content: '{"status": "KO", "code": "BAD_API_KEY", "details": "Wrong or no apiKey received."}'
             });
         }
         delete finalQueryObj.apiKey;
