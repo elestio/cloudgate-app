@@ -1,1 +1,0 @@
-docker exec -t cloudgate-pg pg_dumpall -c -U postgres | gzip > ./dump.sql.gz
