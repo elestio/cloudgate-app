@@ -5,7 +5,7 @@ module.exports = async (event) => {
     var beginPipeline = process.hrtime();
 
     var response = "";
-    response = "<b>Hello, World! From Sample</b><br/><br/>\r\n\r\n";
+    response = "<b>Hello, World!</b><br/><br/>\r\n\r\n";
     response += "Timestamp: " + (+new Date()) + "<br/>\r\n";
     response += "Method: " + event.method + "<br/>\r\n";
     response += "URL: " + event.url + "<br/>\r\n";

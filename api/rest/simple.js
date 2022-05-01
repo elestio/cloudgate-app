@@ -3,7 +3,7 @@ module.exports = async (event) => {
     var myContent = JSON.stringify(event)
     return {  
         httpStatus: "200", 
-        headers: {'content-type': 'text/html'}, 
+        headers: {'content-type': 'application/json'}, 
         content: myContent 
     };
 };

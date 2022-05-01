@@ -1,7 +1,6 @@
 const qs = require('querystring');
 const { getBody, getIP, GzipContent } = require("@elestio/cloudgate/modules/tools");
 const coregate = require('@elestio/cloudgate/coregate.js');
-
 var zlib = require('zlib');
 
 var apiConfig = require("./apiconfig.json");
@@ -66,12 +65,6 @@ exports.sendResponse = (res, response = {}, durationMS, event) => {
 
         try{
 
-            //return without compression, now handled by Cloudflare reverse proxy
-            //res.end(response.content);
-
-            //Adding compression if supported
-            //Too slow, disabled for now ... done by Cloudflare reverse proxy
-            
             var acceptEncoding = "";
             if ( event != null && event.headers["accept-encoding"] != null ){
                 acceptEncoding = event.headers["accept-encoding"].toLocaleLowerCase();
@@ -115,6 +108,8 @@ exports.sendResponse = (res, response = {}, durationMS, event) => {
     return;
 }
 
+
+// Parse the request details, body, headers, and query string then return the event
 exports.requestParser = async (res, req, apiEndpoint) => {
 
     let finalQueryObj = {}, FILES = [], isValidReq = true;

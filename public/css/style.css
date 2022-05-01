@@ -1,0 +1,234 @@
+body {
+    color: #666666;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.80857;
+    overflow-x: hidden !important;
+    background-color: #f9fafe;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*------------------------------------------------------------------ 
+     Main Body 
+  -------------------------------------------------------------------*/
+  .app-header {
+    margin: 20px;
+  }
+  .app-header img {
+    width: 8.8125rem;
+  }
+  
+  .app-body {
+    font-size: calc(10px + 2vmin);
+    text-align: center;
+  }
+  .app-heading {
+    color: #de8011;
+    font-size: 1.625rem;
+    line-height: 5.062rem;
+  }
+  
+  .app-link {
+    color: #9c519c;
+  }
+  
+  h1{
+    color: #f1871c;
+    font-size: 36px;
+    margin: 0;
+  }
+  
+  h4{
+    color: black;
+    font-size: 20px;
+    margin: 0;
+    margin-top: -10px;
+    line-height: 20px;
+  }
+  
+  .app-deploy {
+    margin: 20px;
+    margin-top: 50px;
+  }
+  
+  .btn {
+    background: #083468;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.0625rem solid transparent;
+    padding: 0.8125rem 1.4375rem;
+    width: auto;
+    text-decoration: none;
+  }
+  .btn:hover {
+    background: #0c4c97;
+  }
+  
+  .app-info-block {
+    width: 420px;
+    margin: 0 auto;
+    max-width: 90%;
+    background: #efefef;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 20px;
+  }
+  
+  .subVal{
+    float: right;
+    margin-right: 15px;
+    background: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 4px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  /* BG Anim*/
+  .area {
+    background: #ffffff;
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+    width: 100%;
+    height: 98.5vh;
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+  }
+  
+  .circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgb(241 135 28);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+  
+  }
+  
+  .circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+  }
+  
+  
+  .circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 6s;
+  }
+  
+  .circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+  }
+  
+  .circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 9s;
+  }
+  
+  .circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+  }
+  
+  .circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+  }
+  
+  .circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+  }
+  
+  .circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+  }
+  
+  .circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+  }
+  
+  .circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+  }
+  
+  
+  
+  @keyframes animate {
+  
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+  
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+  
+  }

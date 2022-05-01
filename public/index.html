@@ -1,29 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Basic -->
 
-<head>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-	<title>
-		CloudGate Sample App
-	</title>
-	<meta name="description" content="Cloudgate server test page">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<body>
-    <H1>Welcome to CloudGate!</H1>
-    <span>
-        If you see this page, CloudGate is working and running.
-    </span>
-    <br/><br/>
-    <a href='/api/tests/simple'>Minimum processing pipeline Demo</a>
-    <br/><br/>
-    <a href='/api/tests/full'>REST API Demo</a>
-    <br/><br/>
-    <a href='/api/tests/template'>Template Demo</a>
-    <br/><br/>
-    <a href='/wsChat.html'>Websocket Chat Demo</a>
-</body>
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
+    <!-- Site Metas -->
+    <title>Elestio Cloudgate example</title>
+    <meta name="description" content="A fullstack example with Cloudgate serving static files, REST API & Websocket" />
+    
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+
+    <!-- Main content -->
+    <header class="app-header">
+      <img src="images/elestio-logo.svg" alt="logo" />
+    </header>
+
+
+
+    <div class="app-body">
+      <div class="app-heading" style="margin-bottom: 40px;">
+        <h1>Welcome to Elestio - Cloudgate</h1>
+        <h4>Deploy your apps quickly with the easiest CI/CD system</h2>
+      </div>
+
+      <p class="app-info-block">
+        This Host <strong class="subVal" id="host">?</strong>
+      </p>
+
+      <p class="app-info-block">
+        Your IP <strong class="subVal" id="yourIP">?</strong>
+      </p>
+
+      <p class="app-info-block">
+        Your Location <strong class="subVal" id="location">?</strong>
+      </p>
+
+      <p class="app-info-block">
+        Latency to server <strong class="subVal" id="latency">? ms</strong>
+      </p>
+
+      <p class="app-info-block">
+        Processing time <strong class="subVal" id="processingTime">? ms</strong>
+      </p>
+
+      
+
+      <div class="app-deploy">
+        <a href="https://dash.elest.io/deploy?source=cicd&social=Github&url=https://github.com/elestio-examples/cloudgate" class="btn mb-10-m btn-try"
+          >Deploy Cloudgate on Elestio
+        </a>
+      </div>
+
+      <div style="font-size: 15px; padding-top:20px;">
+        <H3>Cloudgate test links</H3>
+        <a href='/api/rest/simple'>Minimum processing pipeline demo</a>
+        <br/>
+        <a href='/api/rest/full'>REST API demo</a>
+        <br/>
+        <a href='/wsChat.html'>Websocket Chat demo</a>
+      </div>
+
+    </div>
+
+    <!-- BG Anim -->
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    
+
+    <!-- End Main content -->
+    <!-- ALL JS FILES -->
+    <script src="js/app.js"></script>
+  </body>
 </html>
