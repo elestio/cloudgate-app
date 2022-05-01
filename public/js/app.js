@@ -11,6 +11,7 @@ function getLatency() {
             //console.log(error);
             //clearInterval(timerLatency)
             document.getElementById("latency").innerHTML = "? ms";
+            document.getElementById("processingTime").innerHTML = "? ms";
         });
 
 }
