@@ -6,6 +6,8 @@ const { getIP } = require('@elestio/cloudgate/modules/tools.js');
 const memory = require('@elestio/cloudgate/modules/memory');
 const sharedMemory = require('@elestio/cloudgate/modules/shared-memory');
 
+const si = require('systeminformation');
+
 const api = require('./api.js');
 const apiconfig = require('./apiconfig.json')
 
@@ -29,6 +31,8 @@ if (isMainThread) {
 
     console.log(new Date());
     console.log("Starting cloudgate app ...");
+
+    WelcomBanner(process.argv)
 
     let workersList = [];
     function handleMessage(msg) {
@@ -345,7 +349,7 @@ if (isMainThread) {
     //start listening
     app.listen(parseInt(finalPort), (token) => {
         if (token) {
-            console.log('Listening to port ' + finalPort + ' from thread ' + threadId);
+            //console.log('Listening to port ' + finalPort + ' from thread ' + threadId);
         } else {
             console.log('Failed to listen to port ' + finalPort + ' from thread ' + threadId);
         }
@@ -431,4 +435,60 @@ function WSThreadSafeUtility(app) {
 
 function safeJoinPath(...paths) {
    return path.join(...paths).replace(/\\/g, "/");
+}
+
+
+async function WelcomBanner(argv){
+    setTimeout(async function(){
+
+        console.log("");
+        console.log("================================================================");    
+        console.log("CloudGate V" + require('./node_modules/@elestio/cloudgate/package.json').version + " - " + new Date().toString().split('(')[0]);
+        console.log("================================================================");
+        console.log("Root App Folder: " + process.cwd());   
+
+        var cpuData = await si.cpu();
+        var osInfo = await si.osInfo();
+        var memoryInfo = await si.mem();
+        var ifaces = os.networkInterfaces();
+
+        console.log("Platform: " + os.platform() + " | " + osInfo.arch + " | " + osInfo.distro + " | " + osInfo.release + " | Node.js " + process.version);
+        console.log("Total Mem: " + (memoryInfo.total/1024/1024/1024).toFixed(2) + "GB | Available: " + (memoryInfo.available/1024/1024/1024).toFixed(2) + "GB");
+        
+
+        var multiThreading = "No";
+        if ( os.cpus().length > 1 ) {
+            multiThreading = "Yes";
+        }
+        console.log("CPU: " + cpuData.manufacturer + " | " + cpuData.brand );
+
+        console.log("Multithreading: "+ multiThreading +" | Threads: " + os.cpus().length );
+
+        console.log("================================================================");
+
+        var port = parseInt(process.env.PORT, 3000) || 3000;
+
+        Object.keys(ifaces).forEach(function(dev) {
+            ifaces[dev].forEach(function(details) {
+                if (!details.address.startsWith("fe80::")) 
+                {
+                    if (details.family === 'IPv4') 
+                    {
+                        console.log("Listening on: http://" + details.address + ":" + port );    
+                    }
+                    else if (details.address.toString() != "::1") {
+                        console.log("Listening on: http://[" + details.address + "]:" + port );    
+                    }
+                }
+            });
+        });
+
+        if ( process.env.sslActivated == "1" ) {
+            console.log("Listening on: https://" + SSL_PORT + ":" + 443 );
+        }
+
+        console.log("================================================================");
+        console.log("Server is now ready!");
+        
+    }, 200);
 }
