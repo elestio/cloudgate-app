@@ -1,1 +1,0 @@
-docker run --rm -p 80:9000 -it elestio/cloudgate-app

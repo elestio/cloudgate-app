@@ -62,7 +62,7 @@ REST API & Websocket functions receive an event object, here is an example:
             "myParam1": "123"
         },
         "headers": {
-            "host": "localhost:9000",
+            "host": "localhost:3000",
             "connection": "keep-alive",
             "cache-control": "max-age=0",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36",
@@ -82,27 +82,27 @@ REST API & Websocket functions receive an event object, here is an example:
 
 # Run
 
-## Run directly
+## Run directly on port 3000
 
-    ./run.sh
+    PORT=3000 node index.js
 
-or run as a service with pm2
 
-    npm install -g pm2
-    pm2 start run.sh --name cloudgate-app
-    pm2 save
+## Run on port 443 with SSL
+    
+    SSL=1 SSL_PORT=443 SSL_CERT=/path/to/cert.cer SSL_KEY=/path/to/cert.key node index.js
+
 &nbsp;
 
 ## Run with docker
 Run just once
 
     docker build -t elestio/cloudgate-app .
-    docker run --rm -p 80:9000 -it elestio/cloudgate-app
+    docker run --rm -p 80:3000 -it elestio/cloudgate-app
 
 Run as a docker service
 
     systemctl enable docker; #enable docker at boot
-    docker run -p 80:9000 -it -d --name cloudgate-app --restart always elestio/cloudgate-app;
+    docker run -p 80:3000 -it -d --name cloudgate-app --restart always elestio/cloudgate-app;
 
 
 &nbsp;
@@ -121,9 +121,9 @@ My test configuration for the tests results below: AMD Ryzen 5 3600, 6 cores
 
 ## Serving Static HTML file
 
-    > wrk -t6 -c256 http://127.0.0.1:9000/ --latency
+    > wrk -t6 -c256 http://127.0.0.1:3000/ --latency
     --------------------------------------------
-    Running 10s test @ http://127.0.0.1:9000/
+    Running 10s test @ http://127.0.0.1:3000/
     6 threads and 256 connections
     Thread Stats   Avg      Stdev     Max   +/- Stdev
         Latency     1.06ms    1.89ms  27.98ms   89.41%
@@ -155,9 +155,9 @@ nginx is running on port 8080 on my server
 
 ## Serving Static PNG file
 
-    > wrk -t6 -c256 http://127.0.0.1:9000/cloudgate128.png --latency
+    > wrk -t6 -c256 http://127.0.0.1:3000/cloudgate128.png --latency
     --------------------------------------------
-    Running 10s test @ http://127.0.0.1:9000/cloudgate128.png
+    Running 10s test @ http://127.0.0.1:3000/cloudgate128.png
     6 threads and 256 connections
     Thread Stats   Avg      Stdev     Max   +/- Stdev
         Latency     1.49ms    2.58ms  32.23ms   87.76%
@@ -188,9 +188,9 @@ nginx is running on port 8080 on my server
 &nbsp;
 ## REST API: Hello World
 
-    > wrk -t6 -c256 http://127.0.0.1:9000/api/tests/simple --latency
+    > wrk -t6 -c256 http://127.0.0.1:3000/api/tests/simple --latency
     --------------------------------------------
-    Running 10s test @ http://127.0.0.1:9000/api/tests/simple
+    Running 10s test @ http://127.0.0.1:3000/api/tests/simple
     6 threads and 256 connections
     Thread Stats   Avg      Stdev     Max   +/- Stdev
         Latency     1.45ms    2.57ms  44.15ms   88.06%
@@ -208,9 +208,9 @@ nginx is running on port 8080 on my server
 &nbsp;
 ## REST API: read headers, method, querystring, posted data, source ip, increment shared memory, ...
 
-    > wrk -t6 -c256 http://127.0.0.1:9000/api/tests/full --latency
+    > wrk -t6 -c256 http://127.0.0.1:3000/api/tests/full --latency
     --------------------------------------------
-    Running 10s test @ http://127.0.0.1:9000/api/tests/full
+    Running 10s test @ http://127.0.0.1:3000/api/tests/full
     6 threads and 256 connections
     Thread Stats   Avg      Stdev     Max   +/- Stdev
         Latency     1.02ms  571.05us  19.19ms   82.27%
@@ -227,9 +227,9 @@ nginx is running on port 8080 on my server
 &nbsp;
 ## REST API: read file on disk, replace variables, return generated page
 
-    > wrk -t6 -c256 http://127.0.0.1:9000/api/tests/template --latency
+    > wrk -t6 -c256 http://127.0.0.1:3000/api/tests/template --latency
     --------------------------------------------
-    Running 10s test @ http://127.0.0.1:9000/api/tests/template
+    Running 10s test @ http://127.0.0.1:3000/api/tests/template
     6 threads and 256 connections
     Thread Stats   Avg      Stdev     Max   +/- Stdev
         Latency     1.52ms    2.00ms  28.25ms   89.05%

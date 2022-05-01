@@ -9,7 +9,7 @@ const sharedMemory = require('@elestio/cloudgate/modules/shared-memory');
 const api = require('./api.js');
 const apiconfig = require('./apiconfig.json')
 
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 3000;
 const sslActivated = process.env.SSL || "0";
 const SSL_PORT = process.env.SSL_PORT || 443;
 const SSL_CERT = process.env.SSL_CERT;

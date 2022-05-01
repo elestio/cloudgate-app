@@ -14,5 +14,5 @@ COPY . .
 
 RUN npm install --production
 
-EXPOSE 9000
+EXPOSE 3000
 CMD node index.js
